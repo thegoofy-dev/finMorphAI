@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
 
           <main className="min-h-screen">{children}</main>
           {/* footer */}
-          <footer className="bg-blue-100 py-12">
+          <footer className="bg-blue-100 py-8">
             <div className="container mx-auto px-4 text-center text-purple-700">
               <p>Made by GoofyGuy</p>
             </div>
