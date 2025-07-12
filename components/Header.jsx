@@ -55,10 +55,10 @@ const Header = async () => {
           <SignedOut>
             <div className="flex gap-3">
               <SignInButton forceRedirectUrl="/dashboard">
-                <Button variant={"outline"}>Login</Button>
+                <Button variant={"outline"} className={"border-2 border-purple-700 text-purple-700"}>Login</Button>
               </SignInButton>
               <SignUpButton forceRedirectUrl="/dashboard">
-                <Button>SignUp</Button>
+                <Button className={"bg-purple-700 hover:bg-purple-500 flex items-center gap-2"}>SignUp</Button>
               </SignUpButton>
             </div>
           </SignedOut>
