@@ -120,8 +120,22 @@
     @apply bg-background text-foreground;
   }
 }
-
+ 
 .cl-avatarBox {
-  width: 2.3rem !important;
-  height: 2.3rem !important;
+  width: 2.2rem !important;
+  height: 2.2rem !important;
+}
+
+.hero-image-wrapper {
+  perspective: 1000px;
+}
+
+.hero-image {
+  transform: rotateX(15deg) scale(1);
+  transition: transform 0.5s ease-out;
+  will-change: transform;
+}
+
+.hero-image-scrolled {
+  transform: rotateX(0deg) scale(1) translateY(40px);
 }
