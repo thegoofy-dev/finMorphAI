@@ -38,7 +38,7 @@ const Header = async () => {
               href={"/dashboard"}
               className="text-gray-600 hover:text-pruple-600 flex items-center gap-2"
             >
-              <Button variant={"outline"} className={"border-2 border-purple-700 text-purple-700"}>
+              <Button variant={"outline"} className={"border-2 hover:text-purple-700 border-purple-700 text-purple-700"}>
                 <LayoutDashboard size={18} />
                 <span className="hidden md:inline">Dashboard</span>
               </Button>
