@@ -2,8 +2,8 @@ import { getAccountWithTransactions } from "@/actions/accounts";
 import { notFound } from "next/navigation";
 
 const AccountPage = async ({ params }) => {
-  const accountsData = await getAccountWithTransactions(params.id);
-  console.log(accountsData);
+  const resolvedParams = await params;
+  const accountsData = await getAccountWithTransactions(resolvedParams.id);
   if (!accountsData) {
     notFound();
   }
