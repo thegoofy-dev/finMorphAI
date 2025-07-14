@@ -246,7 +246,7 @@ const TransactionTable = ({ transactions }) => {
                   onCheckedChange={handleSelectAll}
                   checked={
                     selectedIds.length ===
-                      filteredAndSortedTransactions.length &&
+                    filteredAndSortedTransactions.length &&
                     filteredAndSortedTransactions.length > 0
                   }
                 />

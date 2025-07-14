@@ -84,10 +84,10 @@ export default function Home() {
                       height={40}
                       className="rounded-full"
                     />
-                  <div className="ml-4">
-                    <div className="font-semibold">{data.name}</div>
-                    <div className="text-sm text-gray-600">{data.role}</div>
-                  </div>
+                    <div className="ml-4">
+                      <div className="font-semibold">{data.name}</div>
+                      <div className="text-sm text-gray-600">{data.role}</div>
+                    </div>
                   </div>
                   <p className="text-shadow-gray-600">{data.quote}</p>
                 </CardContent>
@@ -109,7 +109,7 @@ export default function Home() {
             <Button
               size="lg"
               className="bg-white text-purple-600 border-2 border-purple-600 hover:bg-purple-500 hover:text-white hover:border-white -mb-2 animate-caret-blink hover:animate-none">
-                Start Free Trial
+              Start Free Trial
             </Button>
           </Link>
         </div>

@@ -6,27 +6,27 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 
 const HeroSection = () => {
-    const imageRef = useRef();
+  const imageRef = useRef();
 
-    useEffect(() => {
-        const imageElement = imageRef.current;
+  useEffect(() => {
+    const imageElement = imageRef.current;
 
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY;
-            const scrollThreshold = 100;
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const scrollThreshold = 100;
 
-            if(scrollPosition > scrollThreshold) {
-                imageElement.classList.add("hero-image-scrolled");
-            }
-            else {
-                imageElement.classList.remove("hero-image-scrolled");
-            }
-        }
+      if (scrollPosition > scrollThreshold) {
+        imageElement.classList.add("hero-image-scrolled");
+      }
+      else {
+        imageElement.classList.remove("hero-image-scrolled");
+      }
+    }
 
-        window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="pb-20 px-4">
@@ -46,7 +46,7 @@ const HeroSection = () => {
               Get Started
             </Button>
           </Link>
-          
+
           <Link href="#">
             <Button size="lg" variant={"outline"} className="px-8 text-purple-700 hover:text-purple-700 border-2 border-purple-700">
               Watch Demo

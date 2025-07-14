@@ -67,7 +67,7 @@ const Header = async () => {
             <UserButton
               appearance={{
                 elements: {
-                  avatarBox: "cl-avatarBox", 
+                  avatarBox: "cl-avatarBox",
                 },
               }}
             />
