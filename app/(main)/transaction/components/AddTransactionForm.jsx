@@ -77,6 +77,8 @@ const AddTransactionForm = ({ accounts, categories }) => {
       toast.success("Transaction Created Successfully");
       reset();
       router.push(`/account/${transactionResult.data.accountId}`);
+    } else if (!transactionLoading && transactionResult?.error) {
+      toast.error(transactionResult.error);
     }
   }, [transactionResult, transactionLoading]);
 
