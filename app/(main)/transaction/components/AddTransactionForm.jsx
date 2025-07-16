@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { createTransaction } from "@/actions/transaction";
+import { createTransaction, updateTransaction } from "@/actions/transaction";
 import { transactionSchema } from "@/app/lib/schema";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,7 +9,7 @@ import useFetch from "@/hooks/user-fetch";
 import { useForm } from "react-hook-form";
 import { format } from "date-fns";
 import { CalendarIcon, Loader2 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
 import CreateAccountDrawer from "@/components/CreateAccountDrawer";
@@ -31,8 +31,15 @@ import {
 } from "@/components/ui/popover";
 import ReceiptScanner from "./ReceiptScanner";
 
-const AddTransactionForm = ({ accounts, categories }) => {
+const AddTransactionForm = ({
+  accounts,
+  categories,
+  editMode = false,
+  initialData = null,
+}) => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const editId = searchParams.get("edit");
 
   const {
     register,
@@ -44,21 +51,35 @@ const AddTransactionForm = ({ accounts, categories }) => {
     reset,
   } = useForm({
     resolver: zodResolver(transactionSchema),
-    defaultValues: {
-      type: "EXPENSE",
-      amount: "",
-      description: "",
-      accountId: accounts.data?.find((ac) => ac.isDefault)?.id || "",
-      date: new Date(),
-      isRecurring: false,
-    },
+    defaultValues:
+      editMode && initialData
+        ? {
+            type: initialData.type,
+            amount: initialData.amount.toString(),
+            description: initialData.description,
+            accountId: initialData.accountId,
+            category: initialData.category,
+            date: new Date(initialData.date),
+            isRecurring: initialData.isRecurring,
+            ...(initialData.recurringInterval && {
+              recurringInterval: initialData.recurringInterval,
+            }),
+          }
+        : {
+            type: "EXPENSE",
+            amount: "",
+            description: "",
+            accountId: accounts.data?.find((ac) => ac.isDefault)?.id || "",
+            date: new Date(),
+            isRecurring: false,
+          },
   });
 
   const {
     loading: transactionLoading,
     fn: transactionFn,
     data: transactionResult,
-  } = useFetch(createTransaction);
+  } = useFetch(editMode ? updateTransaction : createTransaction);
 
   const type = watch("type");
   const isRecurring = watch("isRecurring");
@@ -72,22 +93,29 @@ const AddTransactionForm = ({ accounts, categories }) => {
       amount: parseFloat(data.amount),
     };
 
-    transactionFn(formData);
+    if (editMode) transactionFn(editId, formData);
+    else transactionFn(formData);
   };
 
   useEffect(() => {
     if (!transactionLoading && transactionResult?.success) {
-      toast.success("Transaction Created Successfully");
+      toast.success(
+        editMode
+          ? "Transaction updated Successfully"
+          : "Transaction Created Successfully"
+      );
       reset();
       router.push(`/account/${transactionResult.data.accountId}`);
     } else if (!transactionLoading && transactionResult?.error) {
       toast.error(transactionResult.error);
     }
-  }, [transactionResult, transactionLoading]);
+  }, [transactionResult, transactionLoading, editMode]);
 
   useEffect(() => {
-    setValue("category", ""); // Reset category when type changes
-  }, [type, setValue]);
+    if (!getValues("category")) {
+      setValue("category", "");
+    }
+  }, [type]);
 
   const filteredCategories = categories.filter(
     (category) => category.type === type
@@ -110,10 +138,26 @@ const AddTransactionForm = ({ accounts, categories }) => {
     }
   };
 
+  // Reset the form to default values when switching from edit to add transaction mode
+  useEffect(() => {
+    if (!editMode) {
+      reset({
+        type: "EXPENSE",
+        amount: "",
+        description: "",
+        accountId: accounts.data?.find((ac) => ac.isDefault)?.id || "",
+        category: "",
+        date: new Date(),
+        isRecurring: false,
+        recurringInterval: undefined,
+      });
+    }
+  }, [editMode, reset, accounts.data]);
+
   return (
     <form className="space-y-6 mx-auto" onSubmit={handleSubmit(onSubmit)}>
       {/* AI Receipt Scanner */}
-      <ReceiptScanner onScanComplete={handleScanComplete} />
+      {!editMode && <ReceiptScanner onScanComplete={handleScanComplete} />}
 
       {/* Type */}
       <div className="space-y-2">
@@ -309,8 +353,10 @@ const AddTransactionForm = ({ accounts, categories }) => {
           {transactionLoading ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Creating...
+              {editMode ? "Upadting..." : "Creating..."}
             </>
+          ) : editMode ? (
+            "Update Transaction"
           ) : (
             "Create Transaction"
           )}
