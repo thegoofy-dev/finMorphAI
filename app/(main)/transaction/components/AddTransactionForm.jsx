@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import useFetch from "@/hooks/user-fetch";
 import { useForm } from "react-hook-form";
 import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
@@ -29,6 +29,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import ReceiptScanner from "./ReceiptScanner";
 
 const AddTransactionForm = ({ accounts, categories }) => {
   const router = useRouter();
@@ -64,6 +65,8 @@ const AddTransactionForm = ({ accounts, categories }) => {
   const date = watch("date");
 
   const onSubmit = async (data) => {
+    if (transactionLoading) return;
+
     const formData = {
       ...data,
       amount: parseFloat(data.amount),
@@ -90,9 +93,27 @@ const AddTransactionForm = ({ accounts, categories }) => {
     (category) => category.type === type
   );
 
+  useEffect(() => {
+    if (!isRecurring) {
+      setValue("recurringInterval", undefined);
+    }
+  }, [isRecurring]);
+
+  const handleScanComplete = (scannedData) => {
+    console.log(scannedData);
+    if (scannedData) {
+      setValue("amount", scannedData.amount.toString());
+      setValue("date", new Date(scannedData.date));
+      if (scannedData.description)
+        setValue("description", scannedData.description);
+      if (scannedData.category) setValue("category", scannedData.category);
+    }
+  };
+
   return (
     <form className="space-y-6 mx-auto" onSubmit={handleSubmit(onSubmit)}>
       {/* AI Receipt Scanner */}
+      <ReceiptScanner onScanComplete={handleScanComplete} />
 
       {/* Type */}
       <div className="space-y-2">
@@ -284,12 +305,15 @@ const AddTransactionForm = ({ accounts, categories }) => {
         >
           Cancel
         </Button>
-        <Button
-          type="submit"
-          disabled={transactionLoading}
-          className={"w-full"}
-        >
-          Create Transaction
+        <Button type="submit" disabled={transactionLoading} className="w-full">
+          {transactionLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Creating...
+            </>
+          ) : (
+            "Create Transaction"
+          )}
         </Button>
       </div>
     </form>
