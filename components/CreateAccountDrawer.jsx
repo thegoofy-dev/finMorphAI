@@ -26,9 +26,19 @@ import useFetch from "@/hooks/user-fetch";
 import { createAccount } from "@/actions/dashboard";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+import { editAccount } from "@/actions/accounts";
 
-const CreateAccountDrawer = ({ children }) => {
+const CreateAccountDrawer = ({
+  children,
+  mode = "create",
+  account,
+  open: controlledOpen,
+  onOpenChange,
+}) => {
   const [open, setOpen] = useState(false);
+  const isEdit = mode === "edit" && account;
+  const actualOpen = controlledOpen !== undefined ? controlledOpen : open;
+  const setActualOpen = onOpenChange || setOpen;
 
   const {
     register,
@@ -55,12 +65,23 @@ const CreateAccountDrawer = ({ children }) => {
   } = useFetch(createAccount);
 
   useEffect(() => {
+    if (isEdit && account) {
+      setValue("name", account.name || "");
+      setValue("type", account.type || "CURRENT");
+      setValue("balance", account.balance?.toString() || "");
+      setValue("isDefault", account.isDefault || false);
+    } else {
+      reset();
+    }
+  }, [isEdit, account, reset, setValue]);
+
+  useEffect(() => {
     if (newAccount && !createAccountLoading) {
       toast.success("Account created successfully");
       reset();
-      setOpen(false);
+      setActualOpen(false);
     }
-  }, [createAccountLoading, newAccount]);
+  }, [createAccountLoading, newAccount, reset, setActualOpen]);
 
   useEffect(() => {
     if (error) {
@@ -69,16 +90,31 @@ const CreateAccountDrawer = ({ children }) => {
   }, [error]);
 
   const onSubmit = async (data) => {
-    await createAccountFn(data);
-    // You can send `data` to an API here
+    if (isEdit) {
+      // Only update name and type
+      const result = await editAccount(account.id, {
+        name: data.name,
+        type: data.type,
+      });
+      if (result.success) {
+        toast.success("Account updated successfully");
+        setActualOpen(false);
+      } else {
+        toast.error(result.error || "Failed to update account");
+      }
+    } else {
+      await createAccountFn(data);
+    }
   };
 
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
+    <Drawer open={actualOpen} onOpenChange={setActualOpen}>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
-          <DrawerTitle>Create New Account</DrawerTitle>
+          <DrawerTitle>
+            {isEdit ? "Edit Account" : "Create New Account"}
+          </DrawerTitle>
         </DrawerHeader>
         <div className="px-4 pb-4">
           <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
@@ -91,6 +127,7 @@ const CreateAccountDrawer = ({ children }) => {
                 id="name"
                 placeholder="e.g., Main Checking"
                 {...register("name")}
+                disabled={isEdit && !account}
               />
               {errors.name && (
                 <p className="text-sm text-red-500">{errors.name.message}</p>
@@ -108,6 +145,7 @@ const CreateAccountDrawer = ({ children }) => {
               <Select
                 onValueChange={(value) => setValue("type", value)}
                 defaultValue={watch("type")}
+                disabled={isEdit && !account}
               >
                 <SelectTrigger id="type">
                   <SelectValue placeholder="Select type" />
@@ -133,6 +171,7 @@ const CreateAccountDrawer = ({ children }) => {
                 step="0.01"
                 placeholder="0.00"
                 {...register("balance")}
+                disabled={isEdit}
               />
               {errors.balance && (
                 <p className="text-sm text-red-500">{errors.balance.message}</p>
@@ -156,6 +195,7 @@ const CreateAccountDrawer = ({ children }) => {
                 id="isDefault"
                 onCheckedChange={(checked) => setValue("isDefault", checked)}
                 checked={watch("isDefault")}
+                disabled={isEdit}
               />
             </div>
 
@@ -180,8 +220,10 @@ const CreateAccountDrawer = ({ children }) => {
                 {createAccountLoading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Creating...
+                    {isEdit ? "Saving..." : "Creating..."}
                   </>
+                ) : isEdit ? (
+                  "Update Account"
                 ) : (
                   "Create Account"
                 )}

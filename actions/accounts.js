@@ -166,3 +166,32 @@ export async function deleteAccount(accountId) {
     return { success: false, error: error.message };
   }
 }
+
+export async function editAccount(accountId, values) {
+  try {
+    const { userId } = await auth();
+    if (!userId) throw new Error("Unauthorized");
+
+    const user = await db.user.findUnique({
+      where: { clerkUserId: userId },
+    });
+    if (!user) throw new Error("User not found");
+
+    // Only allow updating name and type
+    const dataToUpdate = {
+      name: values.name,
+      type: values.type,
+    };
+
+    const updatedAccount = await db.account.update({
+      where: { id: accountId, userId: user.id },
+      data: dataToUpdate,
+    });
+
+    revalidatePath("/dashboard");
+
+    return { success: true, data: serializeTransaction(updatedAccount) };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+}

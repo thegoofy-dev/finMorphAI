@@ -28,7 +28,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const AccountCard = ({ account }) => {
+const AccountCard = ({ account, onEdit }) => {
   const { name, type, balance, id, isDefault } = account;
 
   const {
@@ -120,8 +120,7 @@ const AccountCard = ({ account }) => {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>
-              <DropdownMenuItem>
-                {" "}
+              <DropdownMenuItem onClick={onEdit}>
                 <PencilIcon /> Edit
               </DropdownMenuItem>
               <DropdownMenuItem
@@ -129,7 +128,6 @@ const AccountCard = ({ account }) => {
                 onClick={handleDelete}
                 disabled={deleting}
               >
-                {" "}
                 <Trash />
                 {deleting ? "Deleting..." : "Delete"}
               </DropdownMenuItem>
