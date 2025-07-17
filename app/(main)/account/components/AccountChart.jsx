@@ -2,13 +2,17 @@
 
 import { endOfDay, format, startOfDay, subDays } from "date-fns";
 import React, { useMemo, useState } from "react";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -72,12 +76,12 @@ const AccountChart = ({ transactions }) => {
 
   return (
     <Card>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-7">
-        <CardTitle className={"text-base font-normal"}>
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1">
+        <CardTitle className={"text-[20px] font-semibold"}>
           Transaction Overview
         </CardTitle>
         <Select defaultValue={dateRange} onValueChange={setDateRange}>
-          <SelectTrigger className="w-[140px]">
+          <SelectTrigger className="w-[140px] text-zinc-900">
             <SelectValue placeholder="Select range" />
           </SelectTrigger>
           <SelectContent>
@@ -94,19 +98,19 @@ const AccountChart = ({ transactions }) => {
       <CardContent>
         <div className="flex justify-around mb-6 text-sm">
           <div className="text-center">
-            <p className="text-muted-foreground">Total Income</p>
+            <p className="text-muted-foreground pb-1">Total Income</p>
             <p className="text-lg font-bold text-green-500">
-              ${totals.income.toFixed(2)}
+              &#36; {totals.income.toFixed(2)}
             </p>
           </div>
           <div className="text-center">
-            <p className="text-muted-foreground">Total Expenses</p>
+            <p className="text-muted-foreground pb-1">Total Expenses</p>
             <p className="text-lg font-bold text-red-500">
-              ${totals.expense.toFixed(2)}
+              &#36; {totals.expense.toFixed(2)}
             </p>
           </div>
           <div className="text-center">
-            <p className="text-muted-foreground">Net</p>
+            <p className="text-muted-foreground pb-1">Net Balance</p>
             <p
               className={`text-lg font-bold ${
                 totals.income - totals.expense >= 0
@@ -114,7 +118,7 @@ const AccountChart = ({ transactions }) => {
                   : "text-red-500"
               }`}
             >
-              ${(totals.income - totals.expense).toFixed(2)}
+              &#36; {(totals.income - totals.expense).toFixed(2)}
             </p>
           </div>
         </div>

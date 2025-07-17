@@ -21,17 +21,18 @@ const AccountPage = async ({ params }) => {
           <h1 className="text-5xl sm:text-6xl font-bold bg-gradient-to-br from-blue-600 to-purple-600 pr-2 pb-2 text-transparent bg-clip-text capitalize">
             {account.name}
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground pl-1">
+            (
             {account.type.charAt(0).toUpperCase() +
               account.type.slice(1).toLowerCase()}{" "}
-            Account
+            Account)
           </p>
         </div>
         <div className="text-right pb-2">
           <div className="text-xl sm:text-2xl font-bold">
             ${parseFloat(account.balance).toFixed(2)}
           </div>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground text-center">
             {account._count.transactions} Transactions
           </p>
         </div>

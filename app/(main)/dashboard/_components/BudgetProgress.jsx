@@ -64,7 +64,7 @@ const BudgetProgress = ({ initialBudget, currentExpenses }) => {
 
   return (
     <div>
-      <Card>
+      <Card className="hover:shadow-md transition-shadow">
         <CardHeader
           className={
             "flex flex-row items-center justify-between space-y-0 pb-2"
@@ -132,8 +132,8 @@ const BudgetProgress = ({ initialBudget, currentExpenses }) => {
                   percentUsed >= 90
                     ? "bg-red-500"
                     : percentUsed >= 75
-                    ? "bg-yellow-500"
-                    : "bg-green-500"
+                      ? "bg-yellow-500"
+                      : "bg-green-500"
                 }`}
               />
               <p className="text-sm text-muted-foreground text-right">

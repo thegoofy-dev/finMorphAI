@@ -32,6 +32,7 @@ import {
   ChevronUp,
   Clock,
   MoreHorizontal,
+  PencilIcon,
   RefreshCw,
   Search,
   Trash,
@@ -276,7 +277,9 @@ const TransactionTable = ({ transactions }) => {
                   onCheckedChange={handleSelectAll}
                   checked={
                     paginatedTransactions.length > 0 &&
-                    paginatedTransactions.every((t) => selectedIds.includes(t.id))
+                    paginatedTransactions.every((t) =>
+                      selectedIds.includes(t.id)
+                    )
                   }
                 />
               </TableHead>
@@ -418,13 +421,15 @@ const TransactionTable = ({ transactions }) => {
                             )
                           }
                         >
+                          <PencilIcon />
                           Edit
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem
-                          className={"text-destructive"}
                           onClick={() => deleteFn([transaction.id])}
+                          variant="destructive"
                         >
+                          <Trash />
                           Delete
                         </DropdownMenuItem>
                       </DropdownMenuContent>
@@ -448,7 +453,9 @@ const TransactionTable = ({ transactions }) => {
           >
             <ChevronLeft className="h-4 w-4" />
           </Button>
-          <span className="text-sm">Page {currentPage} of {totalPages}</span>
+          <span className="text-sm">
+            Page {currentPage} of {totalPages}
+          </span>
           <Button
             variant={"outline"}
             size={"icon"}
@@ -457,7 +464,6 @@ const TransactionTable = ({ transactions }) => {
           >
             <ChevronRight className="h-4 w-4" />
           </Button>
-
         </div>
       )}
     </div>

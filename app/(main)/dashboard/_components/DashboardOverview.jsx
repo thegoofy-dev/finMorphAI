@@ -71,7 +71,7 @@ const DashboardOverview = ({ accounts, transactions }) => {
 
   return (
     <div className={"grid gap-4 md:grid-cols-2"}>
-      <Card>
+      <Card className="hover:shadow-md transition-shadow group relative">
         <CardHeader
           className={"flex flex-row items-center justify-between space-y-0 "}
         >
@@ -142,7 +142,7 @@ const DashboardOverview = ({ accounts, transactions }) => {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="hover:shadow-md transition-shadow group relative">
         <CardHeader>
           <CardTitle className={"text-2xl font-semibold"}>
             Monthly Expense Breakdown
