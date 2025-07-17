@@ -26,7 +26,7 @@ const PREVIEW_DATA = {
 };
 
 // Add a helper function to capitalize the first letter
-function capitalize(str) {
+export function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 

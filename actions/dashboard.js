@@ -6,10 +6,10 @@ import { db } from "@/lib/prisma";
 
 const serializeTransaction = (obj) => {
     const serialized = { ...obj };
-    if (obj.balance && typeof obj.balance.toNumber === 'function') {
+    if (obj.balance && typeof obj.balance.toNumber === "function") {
         serialized.balance = obj.balance.toNumber();
     }
-    if (obj.amount && typeof obj.amount.toNumber === 'function') {
+    if (obj.amount && typeof obj.amount.toNumber === "function") {
         serialized.amount = obj.amount.toNumber();
     }
     return serialized;
@@ -35,7 +35,8 @@ export async function createAccount(data) {
         });
 
         // If this is the first account, make it default regardless of data.isDefault
-        const shouldBeDefault = existingAccounts.length === 0 ? true : data.isDefault;
+        const shouldBeDefault =
+            existingAccounts.length === 0 ? true : data.isDefault;
 
         if (shouldBeDefault) {
             await db.account.updateMany({
@@ -49,8 +50,8 @@ export async function createAccount(data) {
                 ...data,
                 balance: balanceFloat,
                 userId: user.id,
-                isDefault: shouldBeDefault
-            }
+                isDefault: shouldBeDefault,
+            },
         });
 
         const serializedAccount = serializeTransaction(account);
@@ -76,11 +77,30 @@ export async function getUserAccounts() {
     const accounts = await db.account.findMany({
         where: { userId: user.id },
         orderBy: { createdAt: "desc" },
-        include: { _count: { select: { transactions: true } } }
+        include: { _count: { select: { transactions: true } } },
     });
 
     // Serialize each account
     const serializedAccounts = accounts.map(serializeTransaction);
 
     return { success: true, data: serializedAccounts };
+}
+
+export async function getDashboardData() {
+    const { userId } = await auth();
+    if (!userId) throw new Error("Unauthorized");
+
+    const user = await db.user.findUnique({
+        where: { clerkUserId: userId },
+    });
+
+    if (!user) throw new Error("User not found");
+
+    // Get all user transactions
+    const transactions = await db.transaction.findMany({
+        where: { userId: user.id },
+        orderBy: { date: "desc" },
+    });
+
+    return transactions.map(serializeTransaction);
 }
