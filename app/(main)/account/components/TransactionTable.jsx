@@ -52,6 +52,17 @@ import useFetch from "@/hooks/user-fetch";
 import { bulkDeleteTransactions } from "@/actions/accounts";
 import { toast } from "sonner";
 import { BarLoader } from "react-spinners";
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -75,6 +86,9 @@ const TransactionTable = ({ transactions }) => {
   const [typeFilter, setTypeFilter] = useState("");
   const [recurringFilter, setRecurringFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [deleteMode, setDeleteMode] = useState(null); // "single" | "bulk"
+  const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
+  const [transactionToDelete, setTransactionToDelete] = useState(null);
 
   const {
     loading: deleteLoading,
@@ -154,12 +168,6 @@ const TransactionTable = ({ transactions }) => {
 
   // Single and Bulk Transactions Delete Operation
   const handleBulkDelete = async () => {
-    if (
-      !window.confirm(
-        `Are you sure you want to delete ${selectedIds.length} transactions?`
-      )
-    )
-      return;
     deleteFn(selectedIds);
   };
 
@@ -245,7 +253,10 @@ const TransactionTable = ({ transactions }) => {
             <div className="flex items-center gap-2">
               <Button
                 size={"sm"}
-                onClick={handleBulkDelete}
+                onClick={() => {
+                  setDeleteMode("bulk");
+                  setConfirmDialogOpen(true);
+                }}
                 variant={"destructive"}
               >
                 <Trash className="h-4 w-4 mr-2" />
@@ -426,11 +437,16 @@ const TransactionTable = ({ transactions }) => {
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem
-                          onClick={() => deleteFn([transaction.id])}
+                          onClick={() => {
+                            setTransactionToDelete(transaction.id);
+                            setDeleteMode("single");
+                            setConfirmDialogOpen(true);
+                          }}
                           variant="destructive"
+                          disabled={deleteLoading}
                         >
                           <Trash />
-                          Delete
+                          {deleteLoading ? "Deleting..." : "Delete"}
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
@@ -466,6 +482,41 @@ const TransactionTable = ({ transactions }) => {
           </Button>
         </div>
       )}
+
+      <AlertDialog open={confirmDialogOpen} onOpenChange={setConfirmDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle variant="destructive">
+              Are you absolutely sure?
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              {deleteMode === "single"
+                ? "This will permanently delete this transaction and cannot be undone."
+                : `This will permanently delete ${selectedIds.length} selected transactions and cannot be undone.`}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={deleteLoading}>
+              Cancel
+            </AlertDialogCancel>
+            <Button
+              variant="destructive"
+              disabled={deleteLoading}
+              onClick={() => {
+                if (deleteMode === "single" && transactionToDelete) {
+                  deleteFn([transactionToDelete]);
+                } else if (deleteMode === "bulk") {
+                  handleBulkDelete();
+                }
+                setTransactionToDelete(null);
+                setConfirmDialogOpen(false);
+              }}
+            >
+              {deleteLoading ? "Deleting..." : "Continue"}
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
