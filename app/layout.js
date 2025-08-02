@@ -11,6 +11,9 @@ const inter = Inter({
 export const metadata = {
   title: "FinMorph",
   description: "AI FInanced Platform",
+  icons: {
+    icon: "/finMorphLogo.svg",
+  },
 };
 
 export default function RootLayout({ children }) {
