@@ -103,7 +103,7 @@ const TransactionTable = ({ transactions }) => {
     if (searchTerm) {
       const searchLower = searchTerm.toLowerCase();
       result = result.filter((transaction) =>
-        transaction.description?.toLowerCase().includes(searchLower)
+        transaction.description?.toLowerCase().includes(searchLower),
       );
     }
 
@@ -146,14 +146,14 @@ const TransactionTable = ({ transactions }) => {
 
   // Pagination calculations and its operations
   const totalPages = Math.ceil(
-    filteredAndSortedTransactions.length / ITEMS_PER_PAGE
+    filteredAndSortedTransactions.length / ITEMS_PER_PAGE,
   );
 
   const paginatedTransactions = useMemo(() => {
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     return filteredAndSortedTransactions.slice(
       startIndex,
-      startIndex + ITEMS_PER_PAGE
+      startIndex + ITEMS_PER_PAGE,
     );
   }, [filteredAndSortedTransactions, currentPage]);
 
@@ -196,7 +196,7 @@ const TransactionTable = ({ transactions }) => {
     setSelectedIds((current) =>
       current.includes(id)
         ? current.filter((item) => item != id)
-        : [...current, id]
+        : [...current, id],
     );
   };
 
@@ -204,7 +204,7 @@ const TransactionTable = ({ transactions }) => {
     setSelectedIds((current) =>
       current.length === paginatedTransactions.length
         ? []
-        : paginatedTransactions.map((t) => t.id)
+        : paginatedTransactions.map((t) => t.id),
     );
   };
 
@@ -214,9 +214,9 @@ const TransactionTable = ({ transactions }) => {
         <BarLoader className="m-4" width={"100%"} color="#9333ea" />
       )}
       {/* Filters */}
-      <div className="flex flex-col sm:flex-row gap-4">
+      <div className="flex flex-col gap-4 sm:flex-row">
         <div className="relative flex-1">
-          <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Search className="text-muted-foreground absolute top-2.5 left-2 h-4 w-4" />
           <Input
             placeholder="Search Transactions..."
             value={searchTerm}
@@ -259,7 +259,7 @@ const TransactionTable = ({ transactions }) => {
                 }}
                 variant={"destructive"}
               >
-                <Trash className="h-4 w-4 mr-2" />
+                <Trash className="mr-2 h-4 w-4" />
                 Delete Selected ({selectedIds.length})
               </Button>
             </div>
@@ -272,7 +272,7 @@ const TransactionTable = ({ transactions }) => {
               onClick={handleClearFilters}
               title="Clear Filters"
             >
-              <X className="h-4 w-5 " />
+              <X className="h-4 w-5" />
             </Button>
           )}
         </div>
@@ -289,7 +289,7 @@ const TransactionTable = ({ transactions }) => {
                   checked={
                     paginatedTransactions.length > 0 &&
                     paginatedTransactions.every((t) =>
-                      selectedIds.includes(t.id)
+                      selectedIds.includes(t.id),
                     )
                   }
                 />
@@ -347,7 +347,7 @@ const TransactionTable = ({ transactions }) => {
               <TableRow>
                 <TableCell
                   colSpan={7}
-                  className="text-center text-muted-foreground"
+                  className="text-muted-foreground text-center"
                 >
                   No Transactions Found
                 </TableCell>
@@ -370,7 +370,7 @@ const TransactionTable = ({ transactions }) => {
                       style={{
                         background: categoryColors[transaction.category],
                       }}
-                      className="px-2 py-1 rounded text-white text-sm"
+                      className="rounded px-2 py-1 text-sm text-white"
                     >
                       {transaction.category}
                     </span>
@@ -404,7 +404,7 @@ const TransactionTable = ({ transactions }) => {
                             <div>
                               {format(
                                 new Date(transaction.nextRecurringDate),
-                                "PP"
+                                "PP",
                               )}
                             </div>
                           </div>
@@ -428,7 +428,7 @@ const TransactionTable = ({ transactions }) => {
                         <DropdownMenuItem
                           onClick={() =>
                             router.push(
-                              `/transaction/create?edit=${transaction.id}`
+                              `/transaction/create?edit=${transaction.id}`,
                             )
                           }
                         >

@@ -4,12 +4,12 @@ import React from "react";
 
 const NotFound = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[100vh] px-4 text-center">
-      <h1 className="text-6xl font-bold bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+    <div className="flex min-h-[100vh] flex-col items-center justify-center px-4 text-center">
+      <h1 className="mb-4 bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-6xl font-bold text-transparent">
         404
       </h1>
-      <h2 className="text-2xl font-semibold mb-4">Page Not Found</h2>
-      <p className="text-gray-600 mb-8">
+      <h2 className="mb-4 text-2xl font-semibold">Page Not Found</h2>
+      <p className="mb-8 text-gray-600">
         Oops! The page you&apos;re looking for doesn&apos;t exist ot has been
         moved.
       </p>

@@ -42,7 +42,7 @@ const AccountChart = ({ transactions }) => {
 
     // Filter transactions within date range
     const filtered = transactions.filter(
-      (t) => new Date(t.date) >= startDate && new Date(t.date) <= endOfDay(now)
+      (t) => new Date(t.date) >= startDate && new Date(t.date) <= endOfDay(now),
     );
 
     const grouped = filtered.reduce((acc, transaction) => {
@@ -60,7 +60,7 @@ const AccountChart = ({ transactions }) => {
 
     //   Convert to array and sort by date
     return Object.values(grouped).sort(
-      (a, b) => new Date(a.date) - new Date(b.date)
+      (a, b) => new Date(a.date) - new Date(b.date),
     );
   }, [transactions, dateRange]);
 
@@ -70,7 +70,7 @@ const AccountChart = ({ transactions }) => {
         income: acc.income + day.income,
         expense: acc.expense + day.expense,
       }),
-      { income: 0, expense: 0 }
+      { income: 0, expense: 0 },
     );
   }, [filteredData]);
 
@@ -96,7 +96,7 @@ const AccountChart = ({ transactions }) => {
         </Select>
       </CardHeader>
       <CardContent>
-        <div className="flex justify-around mb-6 text-sm">
+        <div className="mb-6 flex justify-around text-sm">
           <div className="text-center">
             <p className="text-muted-foreground pb-1">Total Income</p>
             <p className="text-lg font-bold text-green-500">

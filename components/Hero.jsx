@@ -17,11 +17,10 @@ const HeroSection = () => {
 
       if (scrollPosition > scrollThreshold) {
         imageElement.classList.add("hero-image-scrolled");
-      }
-      else {
+      } else {
         imageElement.classList.remove("hero-image-scrolled");
       }
-    }
+    };
 
     window.addEventListener("scroll", handleScroll);
 
@@ -29,9 +28,9 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="pb-20 px-4">
+    <div className="px-4 pb-20">
       <div className="container mx-auto text-center">
-        <h1 className="text-5xl md:text-8xl lg:text-[105px] pb-6 bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold">
+        <h1 className="bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text pb-6 text-5xl font-bold text-transparent md:text-8xl lg:text-[105px]">
           Manage Your Finances <br /> with Intelligence
         </h1>
 
@@ -40,15 +39,22 @@ const HeroSection = () => {
           analyze, and optimize your spending with real-time insights.
         </p>
 
-        <div className="pt-6 flex gap-4 justify-center">
+        <div className="flex justify-center gap-4 pt-6">
           <Link href="/dashboard">
-            <Button size="lg" className="px-8  bg-purple-700 hover:bg-purple-600">
+            <Button
+              size="lg"
+              className="bg-purple-700 px-8 hover:bg-purple-600"
+            >
               Get Started
             </Button>
           </Link>
 
           <Link href="#">
-            <Button size="lg" variant={"outline"} className="px-8 text-purple-700 hover:text-purple-700 border-2 border-purple-700">
+            <Button
+              size="lg"
+              variant={"outline"}
+              className="border-2 border-purple-700 px-8 text-purple-700 hover:text-purple-700"
+            >
               Watch Demo
             </Button>
           </Link>
@@ -61,12 +67,11 @@ const HeroSection = () => {
               width={1280}
               height={720}
               alt="Dashboard Preview"
-              className="rounded-lg shadow-2xl border mx-auto"
+              className="mx-auto rounded-lg border shadow-2xl"
               priority
             />
           </div>
         </div>
-
       </div>
     </div>
   );

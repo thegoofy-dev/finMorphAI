@@ -18,8 +18,8 @@ const AddTransactionPage = async ({ searchParams }) => {
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-5">
-      <h1 className="text-5xl mb-8 bg-gradient-to-br from-blue-600 to-purple-600 font-extrabold tracking-tighter pr-2 pb-2 text-transparent bg-clip-text">
+    <div className="mx-auto max-w-3xl px-5">
+      <h1 className="mb-8 bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text pr-2 pb-2 text-5xl font-extrabold tracking-tighter text-transparent">
         {editId ? "Edit" : "Add"} Transaction
       </h1>
       <AddTransactionForm

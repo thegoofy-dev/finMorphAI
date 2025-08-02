@@ -15,14 +15,14 @@ import { checkUser } from "@/lib/checkUser";
 const Header = async () => {
   await checkUser();
   return (
-    <div className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b">
-      <nav className="container w-full mx-auto py-4 flex items-center justify-between">
+    <div className="fixed top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md">
+      <nav className="container mx-auto flex w-full items-center justify-between py-4">
         {/* For FinMorph Logo  */}
         <Link href="/">
           <Image
             height={40}
             width={40}
-            className="object-contain rounded-full p-1 bg-purple-300"
+            className="rounded-full bg-purple-300 object-contain p-1"
             src="/animation.gif"
             alt="Animated Icon"
           />
@@ -32,12 +32,12 @@ const Header = async () => {
           <SignedIn>
             <Link
               href={"/dashboard"}
-              className="text-gray-600 hover:text-pruple-600 flex items-center gap-2"
+              className="hover:text-pruple-600 flex items-center gap-2 text-gray-600"
             >
               <Button
                 variant={"outline"}
                 className={
-                  "border-2 hover:text-purple-700 border-purple-700 text-purple-700"
+                  "border-2 border-purple-700 text-purple-700 hover:text-purple-700"
                 }
               >
                 <LayoutDashboard size={18} />
@@ -48,7 +48,7 @@ const Header = async () => {
             <Link href={"/transaction/create"}>
               <Button
                 className={
-                  "bg-purple-700 hover:bg-purple-500 flex items-center gap-2"
+                  "flex items-center gap-2 bg-purple-700 hover:bg-purple-500"
                 }
               >
                 <Image
@@ -74,7 +74,7 @@ const Header = async () => {
               <SignUpButton forceRedirectUrl="/dashboard">
                 <Button
                   className={
-                    "bg-purple-700 hover:bg-purple-500 flex items-center gap-2"
+                    "flex items-center gap-2 bg-purple-700 hover:bg-purple-500"
                   }
                 >
                   SignUp

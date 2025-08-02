@@ -28,12 +28,12 @@ const COLORS = [
 
 const DashboardOverview = ({ accounts, transactions }) => {
   const [selectedAccountId, setSelectedAccountId] = useState(
-    accounts.find((a) => a.isDefault)?.id || accounts[0]?.id
+    accounts.find((a) => a.isDefault)?.id || accounts[0]?.id,
   );
 
   // Filter transactions for selected account
   const accountTransactions = transactions.filter(
-    (t) => t.accountId === selectedAccountId
+    (t) => t.accountId === selectedAccountId,
   );
 
   const recentTransactions = accountTransactions
@@ -66,16 +66,16 @@ const DashboardOverview = ({ accounts, transactions }) => {
     ([category, amount]) => ({
       name: capitalize(category),
       value: amount,
-    })
+    }),
   );
 
   return (
     <div className={"grid gap-4 md:grid-cols-2"}>
-      <Card className="hover:shadow-md transition-shadow group relative">
+      <Card className="group relative transition-shadow hover:shadow-md">
         <CardHeader
-          className={"flex flex-row items-center justify-between space-y-0 "}
+          className={"flex flex-row items-center justify-between space-y-0"}
         >
-          <CardTitle className={"font-semibold text-2xl"}>
+          <CardTitle className={"text-2xl font-semibold"}>
             Recent Transaction
           </CardTitle>
 
@@ -98,7 +98,7 @@ const DashboardOverview = ({ accounts, transactions }) => {
         <CardContent>
           <div className="space-y-4">
             {recentTransactions.length === 0 ? (
-              <p className="text-center text-muted-foreground">
+              <p className="text-muted-foreground text-center">
                 No recent transactions
               </p>
             ) : (
@@ -109,10 +109,10 @@ const DashboardOverview = ({ accounts, transactions }) => {
                     className="flex items-center justify-between"
                   >
                     <div className="space-y-1">
-                      <p className="text-sm font-medium leading-none">
+                      <p className="text-sm leading-none font-medium">
                         {tx.description || "Untitled Transaction"}
                       </p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         {format(new Date(tx.date), "PP")}
                       </p>
                     </div>
@@ -123,7 +123,7 @@ const DashboardOverview = ({ accounts, transactions }) => {
                           "flex items-center",
                           tx.type === "EXPENSE"
                             ? "text-red-500"
-                            : "text-green-500"
+                            : "text-green-500",
                         )}
                       >
                         {tx.type === "EXPENSE" ? (
@@ -142,7 +142,7 @@ const DashboardOverview = ({ accounts, transactions }) => {
         </CardContent>
       </Card>
 
-      <Card className="hover:shadow-md transition-shadow group relative">
+      <Card className="group relative transition-shadow hover:shadow-md">
         <CardHeader>
           <CardTitle className={"text-2xl font-semibold"}>
             Monthly Expense Breakdown
@@ -150,7 +150,7 @@ const DashboardOverview = ({ accounts, transactions }) => {
         </CardHeader>
         <CardContent className={"p-0 pb-5"}>
           {pieChartData.length === 0 ? (
-            <p className="text-center text-muted-foreground py-4">
+            <p className="text-muted-foreground py-4 text-center">
               No expense this month
             </p>
           ) : (

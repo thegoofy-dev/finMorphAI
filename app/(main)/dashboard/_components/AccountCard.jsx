@@ -93,10 +93,10 @@ const AccountCard = ({ account, onEdit }) => {
 
   return (
     <>
-      <Card className="hover:shadow-md transition-shadow group relative">
+      <Card className="group relative transition-shadow hover:shadow-md">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <Link href={`/account/${id}`} aria-label={`View ${name} account`}>
-            <CardTitle className="hover:underline text-[20px] font-medium capitalize">
+            <CardTitle className="text-[20px] font-medium capitalize hover:underline">
               {name}
             </CardTitle>
           </Link>
@@ -114,19 +114,19 @@ const AccountCard = ({ account, onEdit }) => {
                   className="rounded p-1 hover:bg-zinc-100"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <MoreVertical className="w-5 h-5" />
+                  <MoreVertical className="h-5 w-5" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem onClick={onEdit}>
-                  <PencilIcon className="mr-2 w-4 h-4" /> Edit
+                  <PencilIcon className="mr-2 h-4 w-4" /> Edit
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   variant="destructive"
                   onClick={() => setDialogOpen(true)}
                   disabled={deleting}
                 >
-                  <Trash className="mr-2 w-4 h-4" />
+                  <Trash className="mr-2 h-4 w-4" />
                   {deleting ? "Deleting..." : "Delete"}
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -139,12 +139,12 @@ const AccountCard = ({ account, onEdit }) => {
             <div className="text-2xl font-bold">
               &#36; {parseFloat(balance ?? 0).toFixed(2)}
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-muted-foreground text-xs">
               {type.charAt(0) + type.slice(1).toLowerCase()} Account
             </p>
           </CardContent>
 
-          <CardFooter className="flex justify-between text-sm text-muted-foreground">
+          <CardFooter className="text-muted-foreground flex justify-between text-sm">
             <div className="flex items-center">
               <ArrowUpRight className="mr-1 h-4 w-4 text-green-500" />
               Income
@@ -177,7 +177,7 @@ const AccountCard = ({ account, onEdit }) => {
             >
               {deleting ? (
                 <>
-                  <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   Deleting...
                 </>
               ) : (

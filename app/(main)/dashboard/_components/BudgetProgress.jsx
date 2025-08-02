@@ -19,7 +19,7 @@ import { Progress } from "@/components/ui/progress";
 const BudgetProgress = ({ initialBudget, currentExpenses }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newBudget, setNewBudget] = useState(
-    initialBudget?.amount?.toString() || ""
+    initialBudget?.amount?.toString() || "",
   );
 
   const percentUsed = initialBudget
@@ -64,7 +64,7 @@ const BudgetProgress = ({ initialBudget, currentExpenses }) => {
 
   return (
     <div>
-      <Card className="hover:shadow-md transition-shadow">
+      <Card className="transition-shadow hover:shadow-md">
         <CardHeader
           className={
             "flex flex-row items-center justify-between space-y-0 pb-2"
@@ -72,7 +72,7 @@ const BudgetProgress = ({ initialBudget, currentExpenses }) => {
         >
           <div className="flex-1">
             <CardTitle>Monthly Budget (Default Account)</CardTitle>
-            <div className="flex items-center gap-2 mt-1">
+            <div className="mt-1 flex items-center gap-2">
               {isEditing ? (
                 <div className="flex items-center gap-2">
                   <Input
@@ -106,7 +106,7 @@ const BudgetProgress = ({ initialBudget, currentExpenses }) => {
                   <CardDescription>
                     {initialBudget
                       ? `$${currentExpenses.toFixed(
-                          2
+                          2,
                         )} of $${initialBudget.amount.toFixed(2)} spent`
                       : "No budget set"}
                   </CardDescription>
@@ -136,7 +136,7 @@ const BudgetProgress = ({ initialBudget, currentExpenses }) => {
                       : "bg-green-500"
                 }`}
               />
-              <p className="text-sm text-muted-foreground text-right">
+              <p className="text-muted-foreground text-right text-sm">
                 {percentUsed.toFixed(1)}% used
               </p>
             </div>

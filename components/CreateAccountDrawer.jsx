@@ -138,7 +138,7 @@ const CreateAccountDrawer = ({
             <div className="space-y-2">
               <label
                 htmlFor="type"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                className="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
                 Account Type
               </label>
@@ -183,11 +183,11 @@ const CreateAccountDrawer = ({
               <div className="space-y-0.5">
                 <label
                   htmlFor="isDefault"
-                  className="text-sm font-medium cursor-pointer"
+                  className="cursor-pointer text-sm font-medium"
                 >
                   Set as Default
                 </label>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   This account will be selected by default for transactions
                 </p>
               </div>

@@ -102,7 +102,7 @@ const AddTransactionForm = ({
       toast.success(
         editMode
           ? "Transaction updated Successfully"
-          : "Transaction Created Successfully"
+          : "Transaction Created Successfully",
       );
       reset();
       router.push(`/account/${transactionResult.data.accountId}`);
@@ -118,7 +118,7 @@ const AddTransactionForm = ({
   }, [type]);
 
   const filteredCategories = categories.filter(
-    (category) => category.type === type
+    (category) => category.type === type,
   );
 
   useEffect(() => {
@@ -155,7 +155,7 @@ const AddTransactionForm = ({
   }, [editMode, reset, accounts.data]);
 
   return (
-    <form className="space-y-6 mx-auto" onSubmit={handleSubmit(onSubmit)}>
+    <form className="mx-auto space-y-6" onSubmit={handleSubmit(onSubmit)}>
       {/* AI Receipt Scanner */}
       {!editMode && <ReceiptScanner onScanComplete={handleScanComplete} />}
 
@@ -208,12 +208,12 @@ const AddTransactionForm = ({
             <SelectContent>
               {accounts.data.map((account) => (
                 <SelectItem key={account.id} value={account.id}>
-                  <div className="flex justify-between items-center">
+                  <div className="flex items-center justify-between">
                     <span>
                       {account.name} (${parseFloat(account.balance).toFixed(2)})
                     </span>
                     {account.isDefault && (
-                      <span className="ml-2 px-2 py-0.5 text-xs bg-green-100 text-green-700 rounded-full">
+                      <span className="ml-2 rounded-full bg-green-100 px-2 py-0.5 text-xs text-green-700">
                         Default
                       </span>
                     )}
@@ -223,7 +223,7 @@ const AddTransactionForm = ({
               <CreateAccountDrawer>
                 <Button
                   variant="ghost"
-                  className="flex cursor-default items-center w-full select-none outline-none"
+                  className="flex w-full cursor-default items-center outline-none select-none"
                 >
                   Create Account
                 </Button>
@@ -303,7 +303,7 @@ const AddTransactionForm = ({
       <div className="flex flex-row items-center justify-between rounded-lg border p-4">
         <div className="space-y-0.5">
           <label className="text-base font-medium">Recurring Transaction</label>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Set up a recurring schedule for this transaction
           </p>
         </div>

@@ -15,12 +15,12 @@ export default function Home() {
     <div className="pt-40">
       <HeroSection />
 
-      <section className="py-20 bg-purple-50 rounded-full">
+      <section className="rounded-full bg-purple-50 py-20">
         <div className="container mx-auto px-4">
-          <div className=" grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {statsData.map((data, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                <div className="mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl font-bold text-transparent">
                   {data.value}
                 </div>
                 <div className="text-gray-600">{data.label}</div>
@@ -32,10 +32,10 @@ export default function Home() {
 
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="mb-12 text-center text-3xl font-bold">
             Everything you need to manage your finances
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {featuresData.map((feature, index) => (
               <Card key={index} className={"p-6"}>
                 <CardContent className="space-y-4 pt-4">
@@ -49,17 +49,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-12 bg-purple-50 rounded-bl-full">
+      <section className="rounded-bl-full bg-purple-50 py-12">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-6">How It Works</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <h2 className="mb-6 text-center text-3xl font-bold">How It Works</h2>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             {howItWorksData.map((work, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-purple-100">
                   {" "}
                   {work.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-4">{work.title}</h3>
+                <h3 className="mb-4 text-xl font-semibold">{work.title}</h3>
                 <p className="text-gray-600">{work.description}</p>
               </div>
             ))}
@@ -69,14 +69,14 @@ export default function Home() {
 
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="mb-12 text-center text-3xl font-bold">
             What Our Users Says
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {testimonialsData.map((data, index) => (
               <Card key={index} className={"p-6"}>
                 <CardContent className="space-y-4 pt-4">
-                  <div className="flex items-center mb-4">
+                  <div className="mb-4 flex items-center">
                     <Image
                       src={data.image}
                       alt={data.name}
@@ -97,18 +97,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-12 bg-purple-50 rounded-tr-full">
+      <section className="rounded-tr-full bg-purple-50 py-12">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-center mb-8">
+          <h2 className="mb-8 text-center text-3xl font-bold">
             Ready to Take Control of Your Finances?
           </h2>
-          <p className="text-purple-600 mb-8 max-w-2xl mx-auto">
-            Joins thousands  of users who are already managing their finances smarter with <strong>FinMorph</strong>
+          <p className="mx-auto mb-8 max-w-2xl text-purple-600">
+            Joins thousands of users who are already managing their finances
+            smarter with <strong>FinMorph</strong>
           </p>
           <Link href="/dashboard">
             <Button
               size="lg"
-              className="bg-white text-purple-600 border-2 border-purple-600 hover:bg-purple-500 hover:text-white hover:border-white -mb-2 animate-caret-blink hover:animate-none">
+              className="animate-caret-blink -mb-2 border-2 border-purple-600 bg-white text-purple-600 hover:animate-none hover:border-white hover:bg-purple-500 hover:text-white"
+            >
               Start Free Trial
             </Button>
           </Link>

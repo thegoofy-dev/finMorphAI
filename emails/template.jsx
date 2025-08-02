@@ -165,13 +165,13 @@ export default function EmailTemplate({
     const { stats, month, insights } = data;
     const savings = stats.totalIncome - stats.totalExpenses;
     const expenseByCategory = Object.entries(stats.byCategory || {}).map(
-      ([category, total]) => ({ category, total })
+      ([category, total]) => ({ category, total }),
     );
     const biggestExpense =
       expenseByCategory.length > 0
         ? expenseByCategory.reduce(
             (max, cat) => (cat.total > max.total ? cat : max),
-            expenseByCategory[0]
+            expenseByCategory[0],
           )
         : null;
 
