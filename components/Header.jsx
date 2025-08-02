@@ -12,6 +12,7 @@ import { Button } from "./ui/button";
 import { LayoutDashboard, PenBox } from "lucide-react";
 import Link from "next/link";
 import { checkUser } from "@/lib/checkUser";
+import { Sparkles } from "./ui/sparkle";
 
 const Header = async () => {
   await checkUser();
@@ -46,8 +47,9 @@ const Header = async () => {
 
             <Link href={"/transaction/create"}>
               <Button className={"bg-purple-700 hover:bg-purple-500 flex items-center gap-2"}>
-                <PenBox size={18} />
-                <span className="hidden md:inline">Add Transaction</span>
+                <Sparkles />
+                {/* <PenBox size={18} />
+                <span className="hidden md:inline">Add Transaction</span> */}
               </Button>
             </Link>
           </SignedIn>
