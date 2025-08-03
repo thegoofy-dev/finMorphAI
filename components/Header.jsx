@@ -25,6 +25,7 @@ const Header = async () => {
             className="rounded-full bg-purple-300 object-contain p-1"
             src="/animation.gif"
             alt="Animated Icon"
+            unoptimized
           />
         </Link>
 
@@ -52,6 +53,7 @@ const Header = async () => {
                 }
               >
                 <Image
+                  unoptimized
                   height={30}
                   width={30}
                   src="/sparkle.gif"
