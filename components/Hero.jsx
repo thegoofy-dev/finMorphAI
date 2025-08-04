@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import { Button } from "./ui/button";
 import Image from "next/image";
+import { Meteors } from "./ui/meteors";
 
 const HeroSection = () => {
   const imageRef = useRef();
@@ -29,6 +30,7 @@ const HeroSection = () => {
 
   return (
     <div className="px-4 pb-20">
+      <Meteors number={10} />
       <div className="container mx-auto text-center">
         <h1 className="bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text pb-6 text-5xl font-bold text-transparent md:text-8xl lg:text-[105px]">
           Manage Your Finances <br /> with Intelligence
