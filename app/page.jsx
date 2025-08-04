@@ -6,9 +6,9 @@ import {
   testimonialsData,
 } from "@/data/landing";
 import { Card, CardContent } from "@/components/ui/card";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 
 export default function Home() {
   return (
@@ -72,31 +72,18 @@ export default function Home() {
           <h2 className="mb-12 text-center text-3xl font-bold">
             What Our Users Says
           </h2>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {testimonialsData.map((data, index) => (
-              <Card key={index} className={"p-6"}>
-                <CardContent className="space-y-4 pt-4">
-                  <div className="mb-4 flex items-center">
-                    <Image
-                      src={data.image}
-                      alt={data.name}
-                      width={40}
-                      height={40}
-                      className="rounded-full"
-                    />
-                    <div className="ml-4">
-                      <div className="font-semibold">{data.name}</div>
-                      <div className="text-sm text-gray-600">{data.role}</div>
-                    </div>
-                  </div>
-                  <p className="text-shadow-gray-600">{data.quote}</p>
-                </CardContent>
-              </Card>
-            ))}
+
+          {/* Infinite moving card */}
+          <div className="dark:bg-grid-white/[0.05] relative flex flex-col items-center justify-center overflow-hidden rounded-md bg-purple-50 antialiased dark:bg-black">
+            <InfiniteMovingCards
+              items={testimonialsData}
+              direction="right"
+              speed="slow"
+            />
           </div>
+          
         </div>
       </section>
-
       <section className="rounded-tr-full bg-purple-50 py-12">
         <div className="container mx-auto px-4 text-center">
           <h2 className="mb-8 text-center text-3xl font-bold">
