@@ -16,7 +16,7 @@ const Header = async () => {
   await checkUser();
   return (
     <div className="fixed top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md">
-      <nav className="container mx-auto flex w-full items-center justify-between py-4">
+      <nav className="container mx-auto flex w-full items-center justify-between px-6 py-4">
         {/* For FinMorph Logo  */}
         <Link href="/">
           <Image
