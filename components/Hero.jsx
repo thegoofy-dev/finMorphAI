@@ -5,6 +5,7 @@ import React, { useEffect, useRef } from "react";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import { Meteors } from "./ui/meteors";
+import { TextGenerateEffect } from "./ui/text-generate-effect";
 
 const HeroSection = () => {
   const imageRef = useRef();
@@ -32,11 +33,19 @@ const HeroSection = () => {
     <div className="px-4 pb-20">
       <Meteors number={10} />
       <div className="container mx-auto text-center">
-        <h1 className="bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text pb-6 text-5xl font-bold text-transparent md:text-8xl lg:text-[105px]">
-          Manage Your Finances <br /> with Intelligence
-        </h1>
+        <div className="mb-4">
+          <TextGenerateEffect
+            words="Manage Your Finances"
+            className="bg-gradient-to-br from-[#711db5] via-[#7616a9] to-[#2e0a5a] bg-clip-text text-5xl font-bold text-transparent md:text-8xl lg:text-[105px]"
+          />
 
-        <p>
+          <TextGenerateEffect
+            words="with Intelligence"
+            className="bg-gradient-to-br from-[#711db5] via-[#7616a9] to-[#2e0a5a] bg-clip-text text-5xl font-bold text-transparent md:text-8xl lg:text-[105px]"
+          />
+        </div>
+
+        <p className="text-xl text-slate-700">
           An AI-powered financial management platform that helps you track,
           analyze, and optimize your spending with real-time insights.
         </p>
