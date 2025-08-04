@@ -1,14 +1,9 @@
 import HeroSection from "@/components/Hero";
-import {
-  featuresData,
-  howItWorksData,
-  statsData,
-  testimonialsData,
-} from "@/data/landing";
-import { Card, CardContent } from "@/components/ui/card";
+import { howItWorksData, statsData, testimonialsData } from "@/data/landing";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import { FeaturesSection } from "@/components/FeatureSection";
 
 export default function Home() {
   return (
@@ -30,24 +25,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="mb-12 text-center text-3xl font-bold">
-            Everything you need to manage your finances
-          </h2>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {featuresData.map((feature, index) => (
-              <Card key={index} className={"p-6"}>
-                <CardContent className="space-y-4 pt-4">
-                  {feature.icon}
-                  <h3 className="text-xl font-semibold">{feature.title}</h3>
-                  <p className="text-gray-600">{feature.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FeaturesSection />
 
       <section className="rounded-bl-full bg-purple-50 py-12">
         <div className="container mx-auto px-4">
@@ -81,7 +59,6 @@ export default function Home() {
               speed="slow"
             />
           </div>
-          
         </div>
       </section>
       <section className="rounded-tr-full bg-purple-50 py-12">
@@ -89,7 +66,7 @@ export default function Home() {
           <h2 className="mb-8 text-center text-3xl font-bold">
             Ready to Take Control of Your Finances?
           </h2>
-          <p className="mx-auto mb-8 max-w-2xl text-purple-600">
+          <p className="mx-auto mb-8 max-w-2xl">
             Joins thousands of users who are already managing their finances
             smarter with <strong>FinMorph</strong>
           </p>
