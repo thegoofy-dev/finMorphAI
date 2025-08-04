@@ -1,9 +1,10 @@
 import HeroSection from "@/components/Hero";
 import { howItWorksData, statsData, testimonialsData } from "@/data/landing";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { FeaturesSection } from "@/components/FeatureSection";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
@@ -70,13 +71,16 @@ export default function Home() {
             Joins thousands of users who are already managing their finances
             smarter with <strong>FinMorph</strong>
           </p>
-          <Link href="/dashboard">
-            <Button
-              size="lg"
-              className="animate-caret-blink -mb-2 border-2 border-purple-600 bg-white text-purple-600 hover:animate-none hover:border-white hover:bg-purple-500 hover:text-white"
+          <Link href="/dashboard" className="flex items-center justify-center">
+            <HoverBorderGradient
+              movingColor="#52057b"
+              containerClassName="rounded-full"
+              as="button"
+              className="flex items-center space-x-2 bg-purple-200 text-purple-500 dark:bg-purple-400 dark:text-black"
             >
-              Start Free Trial
-            </Button>
+              <span>Start Free Trial </span>
+              <ArrowRight />
+            </HoverBorderGradient>
           </Link>
         </div>
       </section>
