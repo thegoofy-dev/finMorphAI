@@ -81,7 +81,7 @@ const BudgetProgress = ({ initialBudget, currentExpenses }) => {
                     onChange={(e) => setNewBudget(e.target.value)}
                     className={"w-32"}
                     placeholder="Enter amount"
-                    autofocus
+                    autoFocus
                     disabled={isLoading}
                   />
                   <Button
