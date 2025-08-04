@@ -67,7 +67,7 @@ export default function Home() {
           <h2 className="mb-8 text-center text-3xl font-bold">
             Ready to Take Control of Your Finances?
           </h2>
-          <p className="mx-auto mb-8 max-w-2xl">
+          <p className="mx-auto text-slate-600 mb-8 max-w-2xl">
             Joins thousands of users who are already managing their finances
             smarter with <strong>FinMorph</strong>
           </p>
