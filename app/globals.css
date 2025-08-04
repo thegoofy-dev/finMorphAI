@@ -120,7 +120,7 @@
     @apply bg-background text-foreground;
   }
 }
- 
+
 .cl-avatarBox {
   width: 2.2rem !important;
   height: 2.2rem !important;
@@ -157,10 +157,10 @@
   animation: gradientMove 3s ease infinite;
 }
 
-
 @theme inline {
-  --animate-scroll: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
- 
+  --animate-scroll: scroll var(--animation-duration, 40s)
+    var(--animation-direction, forwards) linear infinite;
+
   @keyframes scroll {
     to {
       transform: translate(calc(-50% - 0.5rem));
@@ -170,7 +170,7 @@
 
 @theme inline {
   --animate-meteor-effect: meteor 5s linear infinite;
-  
+
   @keyframes meteor {
     0% {
       transform: rotate(215deg) translateX(0);
@@ -184,4 +184,8 @@
       opacity: 0;
     }
   }
+}
+
+.gradient-color {
+  @apply bg-gradient-to-br from-[#711db5] via-[#7616a9] to-[#2e0a5a] bg-clip-text font-bold text-transparent;
 }

@@ -15,14 +15,14 @@ import { checkUser } from "@/lib/checkUser";
 const Header = async () => {
   await checkUser();
   return (
-    <div className="fixed top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md">
-      <nav className="lg container mx-auto flex w-full items-center justify-between px-1.5 py-4 sm:px-6">
+    <div className="fixed top-0 z-50 w-full rounded-br-full rounded-bl-full border-4 border-t-0 border-purple-600 bg-purple-200/80 backdrop-blur-md">
+      <nav className="lg container mx-auto flex w-full items-center justify-between px-3 py-4 sm:px-6">
         {/* For FinMorph Logo  */}
         <Link href="/">
           <Image
             height={40}
             width={40}
-            className="rounded-full bg-purple-300 object-contain p-1"
+            className="rounded-full bg-purple-600 object-contain p-1"
             src="/animation.gif"
             alt="Animated Icon"
             unoptimized

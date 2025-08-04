@@ -11,15 +11,15 @@ export default function Home() {
     <div className="pt-40">
       <HeroSection />
 
-      <section className="rounded-full bg-purple-50 py-20">
+      <section className="rounded-full bg-purple-200 py-20">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {statsData.map((data, index) => (
               <div key={index} className="text-center">
-                <div className="mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl font-bold text-transparent">
+                <div className="mb-2 bg-gradient-to-r from-[#711db5] via-[#7616a9] to-[#2e0a5a] bg-clip-text text-4xl font-bold text-transparent">
                   {data.value}
                 </div>
-                <div className="text-gray-600">{data.label}</div>
+                <div className="text-slate-800">{data.label}</div>
               </div>
             ))}
           </div>
@@ -28,9 +28,11 @@ export default function Home() {
 
       <FeaturesSection />
 
-      <section className="rounded-bl-full bg-purple-50 py-12">
+      <section className="rounded-bl-full bg-purple-200 py-12">
         <div className="container mx-auto px-4">
-          <h2 className="mb-6 text-center text-3xl font-bold">How It Works</h2>
+          <h2 className="mb-6 text-center text-3xl font-bold text-black">
+            How It Works
+          </h2>
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             {howItWorksData.map((work, index) => (
               <div key={index} className="text-center">
@@ -38,8 +40,10 @@ export default function Home() {
                   {" "}
                   {work.icon}
                 </div>
-                <h3 className="mb-4 text-xl font-semibold">{work.title}</h3>
-                <p className="text-gray-600">{work.description}</p>
+                <h3 className="mb-4 text-xl font-semibold text-slate-800">
+                  {work.title}
+                </h3>
+                <p className="text-slate-600">{work.description}</p>
               </div>
             ))}
           </div>
@@ -62,12 +66,13 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="rounded-tr-full bg-purple-50 py-12">
+
+      <section className="rounded-tr-full bg-purple-200 py-12">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="mb-8 text-center text-3xl font-bold">
+          <h2 className="mb-8 text-center text-3xl font-bold dark:text-black">
             Ready to Take Control of Your Finances?
           </h2>
-          <p className="mx-auto text-slate-600 mb-8 max-w-2xl">
+          <p className="mx-auto mb-8 max-w-2xl text-slate-700">
             Joins thousands of users who are already managing their finances
             smarter with <strong>FinMorph</strong>
           </p>

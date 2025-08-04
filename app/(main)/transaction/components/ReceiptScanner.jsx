@@ -50,7 +50,7 @@ const ReceiptScanner = ({ onScanComplete }) => {
         onClick={() => fileInputRef.current?.click()}
         disabled={scanReceiptLoading}
         className={
-          "animate-gradient h-10 w-full bg-gradient-to-br from-orange-500 via-pink-500 to-purple-500 text-white transition-opacity hover:text-white hover:opacity-90"
+          "animate-gradient h-10 w-full bg-gradient-to-br from-[#5f059ae0] via-[#553986] to-[#7203f1] text-white transition-opacity hover:text-white hover:opacity-90"
         }
       >
         {scanReceiptLoading ? (

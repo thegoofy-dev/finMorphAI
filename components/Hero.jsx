@@ -45,7 +45,7 @@ const HeroSection = () => {
           />
         </div>
 
-        <p className="text-xl text-slate-700">
+        <p className="text-xl text-slate-400">
           An AI-powered financial management platform that helps you track,
           analyze, and optimize your spending with real-time insights.
         </p>
