@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 import { Meteors } from "./ui/meteors";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
+import { BackgroundGradient } from "./ui/background-gradient";
 
 const HeroSection = () => {
   const imageRef = useRef();
@@ -73,14 +74,16 @@ const HeroSection = () => {
 
         <div className="hero-image-wrapper">
           <div ref={imageRef} className="hero-image">
-            <Image
-              src="/Hero_banner.jpg"
-              width={1280}
-              height={720}
-              alt="Dashboard Preview"
-              className="mx-auto rounded-lg border shadow-2xl"
-              priority
-            />
+            <BackgroundGradient className="rounded-[22px] bg-white p-3 dark:bg-zinc-900">
+              <Image
+                src="/Hero_banner.jpg"
+                width={1280}
+                height={720}
+                alt="Dashboard Preview"
+                className="mx-auto rounded-lg shadow-2xl"
+                priority
+              />
+            </BackgroundGradient>
           </div>
         </div>
       </div>
