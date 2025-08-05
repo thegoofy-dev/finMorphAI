@@ -54,14 +54,12 @@ import { toast } from "sonner";
 import { BarLoader } from "react-spinners";
 import {
   AlertDialog,
-  AlertDialogTrigger,
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogCancel,
-  AlertDialogAction,
 } from "@/components/ui/alert-dialog";
 
 const ITEMS_PER_PAGE = 10;
@@ -298,13 +296,13 @@ const TransactionTable = ({ transactions }) => {
                 className="cursor-pointer"
                 onClick={() => handleSort("date")}
               >
-                <div className="flex items-center">
+                <div className="flex cursor-pointer items-center">
                   Date{" "}
                   {sortConfig.field === "date" &&
                     (sortConfig.direction === "asc" ? (
-                      <ChevronUp className="ml-1 h-4 w-4" />
+                      <ChevronUp className="ml-1 h-4 w-4 cursor-pointer" />
                     ) : (
-                      <ChevronDown className="ml-1 h-4 w-4" />
+                      <ChevronDown className="ml-1 h-4 w-4 cursor-pointer" />
                     ))}
                 </div>
               </TableHead>
@@ -313,7 +311,7 @@ const TransactionTable = ({ transactions }) => {
                 className="cursor-pointer"
                 onClick={() => handleSort("category")}
               >
-                <div className="flex items-center">
+                <div className="flex cursor-pointer items-center">
                   Category
                   {sortConfig.field === "category" &&
                     (sortConfig.direction === "asc" ? (
@@ -327,13 +325,13 @@ const TransactionTable = ({ transactions }) => {
                 className="cursor-pointer"
                 onClick={() => handleSort("amount")}
               >
-                <div className="flex items-center justify-end">
+                <div className="flex cursor-pointer items-center justify-end">
                   Amount
                   {sortConfig.field === "amount" &&
                     (sortConfig.direction === "asc" ? (
-                      <ChevronUp className="ml-1 h-4 w-4" />
+                      <ChevronUp className="ml-1 h-4 w-4 cursor-pointer" />
                     ) : (
-                      <ChevronDown className="ml-1 h-4 w-4" />
+                      <ChevronDown className="ml-1 h-4 w-4 cursor-pointer" />
                     ))}
                 </div>
               </TableHead>
@@ -390,7 +388,7 @@ const TransactionTable = ({ transactions }) => {
                         <TooltipTrigger>
                           <Badge
                             className={
-                              "gap-1 bg-purple-100 text-purple-700 hover:bg-purple-200"
+                              "gap-1 bg-purple-200 text-purple-700 hover:bg-purple-100"
                             }
                             variant={"outline"}
                           >

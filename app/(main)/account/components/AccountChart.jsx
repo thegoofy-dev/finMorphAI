@@ -77,11 +77,11 @@ const AccountChart = ({ transactions }) => {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1">
-        <CardTitle className={"text-[20px] font-semibold"}>
+        <CardTitle className={"text-[20px] font-semibold text-zinc-300"}>
           Transaction Overview
         </CardTitle>
         <Select defaultValue={dateRange} onValueChange={setDateRange}>
-          <SelectTrigger className="w-[140px] text-zinc-900">
+          <SelectTrigger className="w-[140px] text-zinc-300">
             <SelectValue placeholder="Select range" />
           </SelectTrigger>
           <SelectContent>

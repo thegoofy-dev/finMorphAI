@@ -18,7 +18,7 @@ const AccountPage = async ({ params }) => {
     <div className="space-y-8 px-5">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <h1 className="bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text pr-2 pb-2 text-5xl font-bold text-transparent capitalize sm:text-6xl">
+          <h1 className="gradient-color bg-clip-text pr-2 pb-2 font-bold text-transparent capitalize sm:text-6xl">
             {account.name}
           </h1>
           <p className="text-muted-foreground pl-1">
@@ -28,11 +28,11 @@ const AccountPage = async ({ params }) => {
             Account)
           </p>
         </div>
-        <div className="pb-2 text-right">
-          <div className="text-xl font-bold sm:text-2xl">
+        <div className="text-right">
+          <div className="text-xl font-bold text-zinc-300 sm:text-2xl">
             ${parseFloat(account.balance).toFixed(2)}
           </div>
-          <p className="text-muted-foreground text-center text-sm">
+          <p className="text-muted-foreground mt-2 text-center text-sm">
             {account._count.transactions} Transactions
           </p>
         </div>

@@ -27,19 +27,18 @@ import {
 import { Switch } from "@/components/ui/switch";
 import {
   AlertDialog,
-  AlertDialogTrigger,
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogCancel,
-  AlertDialogAction,
 } from "@/components/ui/alert-dialog";
 
 import useFetch from "@/hooks/user-fetch";
 import { updateDefaultAccount, deleteAccount } from "@/actions/accounts";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const AccountCard = ({ account, onEdit }) => {
   const { name, type, balance, id, isDefault } = account;
@@ -96,14 +95,16 @@ const AccountCard = ({ account, onEdit }) => {
       <Card className="group relative transition-shadow hover:shadow-md">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <Link href={`/account/${id}`} aria-label={`View ${name} account`}>
-            <CardTitle className="text-[20px] font-medium capitalize hover:underline">
+            <CardTitle className="cursor-pointer text-[20px] font-medium capitalize hover:underline">
               {name}
             </CardTitle>
           </Link>
 
           <div className="flex items-center">
             <Switch
-              className="mr-2"
+              className={cn(
+                updateDefaultLoading ? "cursor-prohibited mr-2" : "mr-2",
+              )}
               checked={isDefault}
               onClick={handleDefaultChange}
               disabled={updateDefaultLoading}
@@ -111,7 +112,7 @@ const AccountCard = ({ account, onEdit }) => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
-                  className="rounded p-1 hover:bg-zinc-100"
+                  className="rounded-xl p-1 hover:bg-purple-600"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <MoreVertical className="h-5 w-5" />
@@ -134,27 +135,25 @@ const AccountCard = ({ account, onEdit }) => {
           </div>
         </CardHeader>
 
-        <Link href={`/account/${id}`}>
-          <CardContent className="mb-4">
-            <div className="text-2xl font-bold">
-              &#36; {parseFloat(balance ?? 0).toFixed(2)}
-            </div>
-            <p className="text-muted-foreground text-xs">
-              {type.charAt(0) + type.slice(1).toLowerCase()} Account
-            </p>
-          </CardContent>
+        <CardContent className="mb-2">
+          <div className="text-2xl font-bold">
+            &#36; {parseFloat(balance ?? 0).toFixed(2)}
+          </div>
+          <p className="text-muted-foreground mt-2 text-xs">
+            {type.charAt(0) + type.slice(1).toLowerCase()} Account
+          </p>
+        </CardContent>
 
-          <CardFooter className="text-muted-foreground flex justify-between text-sm">
-            <div className="flex items-center">
-              <ArrowUpRight className="mr-1 h-4 w-4 text-green-500" />
-              Income
-            </div>
-            <div className="flex items-center">
-              <ArrowDownRight className="mr-1 h-4 w-4 text-red-500" />
-              Expense
-            </div>
-          </CardFooter>
-        </Link>
+        <CardFooter className="text-muted-foreground flex justify-between text-sm">
+          <div className="flex items-center">
+            <ArrowUpRight className="mr-1 h-4 w-4 text-green-500" />
+            Income
+          </div>
+          <div className="flex items-center">
+            <ArrowDownRight className="mr-1 h-4 w-4 text-red-500" />
+            Expense
+          </div>
+        </CardFooter>
       </Card>
 
       {/* Alert Dialog */}

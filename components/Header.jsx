@@ -22,14 +22,14 @@ const Header = async () => {
           <Image
             height={40}
             width={40}
-            className="rounded-full bg-purple-600 object-contain p-1"
+            className="cursor-pointer rounded-full bg-purple-600 object-contain p-1"
             src="/animation.gif"
             alt="Animated Icon"
             unoptimized
           />
         </Link>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex cursor-pointer items-center space-x-4">
           <SignedIn>
             <Link
               href={"/dashboard"}
@@ -38,24 +38,27 @@ const Header = async () => {
               <Button
                 variant={"outline"}
                 className={
-                  "border-2 border-purple-700 text-purple-700 hover:text-purple-700"
+                  "cursor-pointer border-2 border-purple-700 text-purple-700 hover:text-purple-700"
                 }
               >
-                <LayoutDashboard size={18} />
-                <span className="hidden md:inline">Dashboard</span>
+                <LayoutDashboard className="cursor-pointer" size={18} />
+                <span className="hidden cursor-pointer md:inline">
+                  Dashboard
+                </span>
               </Button>
             </Link>
 
             <Link href={"/transaction/create"}>
               <Button
                 className={
-                  "flex items-center gap-2 bg-purple-700 hover:bg-purple-500"
+                  "flex cursor-pointer items-center gap-2 bg-purple-700 hover:bg-purple-500"
                 }
               >
                 <Image
                   unoptimized
                   height={30}
                   width={30}
+                  className="cursor-pointer"
                   src="/sparkle.gif"
                   alt="Animated Icon"
                 />
@@ -68,7 +71,9 @@ const Header = async () => {
               <SignInButton forceRedirectUrl="/dashboard">
                 <Button
                   variant={"outline"}
-                  className={"border-2 border-purple-700 text-purple-700"}
+                  className={
+                    "cursor-pointer border-2 border-purple-700 text-purple-700"
+                  }
                 >
                   Login
                 </Button>
@@ -76,7 +81,7 @@ const Header = async () => {
               <SignUpButton forceRedirectUrl="/dashboard">
                 <Button
                   className={
-                    "flex items-center gap-2 bg-purple-700 hover:bg-purple-500"
+                    "flex cursor-pointer items-center gap-2 bg-purple-700 hover:bg-purple-500"
                   }
                 >
                   SignUp

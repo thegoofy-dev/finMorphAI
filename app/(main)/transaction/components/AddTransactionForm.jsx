@@ -185,7 +185,7 @@ const AddTransactionForm = ({
         <div className="space-y-2">
           <label className="text-sm font-medium">Amount</label>
           <Input
-            className={"w-full"}
+            className={"w-full cursor-text"}
             type="number"
             step="0.01"
             placeholder="0.00"

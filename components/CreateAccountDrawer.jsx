@@ -27,6 +27,7 @@ import { createAccount } from "@/actions/dashboard";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { editAccount } from "@/actions/accounts";
+import { cn } from "@/lib/utils";
 
 const CreateAccountDrawer = ({
   children,
@@ -128,6 +129,7 @@ const CreateAccountDrawer = ({
                 placeholder="e.g., Main Checking"
                 {...register("name")}
                 disabled={isEdit && !account}
+                className={cn(isEdit && !account && "cursor-prohibited")}
               />
               {errors.name && (
                 <p className="text-sm text-red-500">{errors.name.message}</p>
@@ -146,6 +148,7 @@ const CreateAccountDrawer = ({
                 onValueChange={(value) => setValue("type", value)}
                 defaultValue={watch("type")}
                 disabled={isEdit && !account}
+                className={cn(isEdit && !account && "cursor-prohibited")}
               >
                 <SelectTrigger id="type">
                   <SelectValue placeholder="Select type" />
@@ -172,6 +175,7 @@ const CreateAccountDrawer = ({
                 placeholder="0.00"
                 {...register("balance")}
                 disabled={isEdit}
+                className={cn(isEdit && "cursor-prohibited")}
               />
               {errors.balance && (
                 <p className="text-sm text-red-500">{errors.balance.message}</p>
@@ -196,6 +200,7 @@ const CreateAccountDrawer = ({
                 onCheckedChange={(checked) => setValue("isDefault", checked)}
                 checked={watch("isDefault")}
                 disabled={isEdit}
+                className={cn(isEdit && "cursor-prohibited")}
               />
             </div>
 

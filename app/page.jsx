@@ -81,10 +81,10 @@ export default function Home() {
               movingColor="#52057b"
               containerClassName="rounded-full"
               as="button"
-              className="flex items-center space-x-2 bg-purple-200 text-purple-500 dark:bg-purple-400 dark:text-black"
+              className="flex cursor-pointer items-center space-x-2 bg-purple-200 text-purple-500 dark:bg-purple-400 dark:text-black"
             >
-              <span>Start Free Trial </span>
-              <ArrowRight />
+              <span className="cursor-pointer">Start Free Trial </span>
+              <ArrowRight className="cursor-pointer" />
             </HoverBorderGradient>
           </Link>
         </div>

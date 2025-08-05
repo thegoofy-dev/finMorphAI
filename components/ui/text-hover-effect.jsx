@@ -114,7 +114,7 @@ export const TextHoverEffect = ({ text, duration }) => {
         stroke="url(#textGradient)"
         strokeWidth="1.5"
         mask="url(#textMask)"
-        className="fill-transparent font-[helvetica] text-7xl font-bold"
+        className="fill-transparent cursor-pointer font-[helvetica] text-7xl font-bold"
       >
         {text}
       </text>
