@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
             {/* header */}
             <Header />
 
-            <main className="min-h-screen">{children}</main>
+            <main className="min-h-screen select">{children}</main>
             <Toaster richColors />
 
 
