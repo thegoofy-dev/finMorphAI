@@ -77,9 +77,11 @@ const HeroSection = () => {
             <BackgroundGradient className="rounded-[22px] bg-white p-3 dark:bg-zinc-900">
               <Image
                 src="/Hero_banner.jpg"
-                width={1280}
-                height={720}
                 alt="Dashboard Preview"
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: "90vw", height: "auto" }}
                 className="mx-auto rounded-lg shadow-2xl"
                 priority
               />

@@ -16,8 +16,9 @@ const Header = async () => {
   await checkUser();
   return (
     <div className="fixed top-0 z-50 w-full rounded-br-full rounded-bl-full border-4 border-t-0 border-purple-600 bg-purple-200/80 backdrop-blur-md">
-      <nav className="lg container mx-auto flex w-full items-center justify-between px-3 py-4 sm:px-6">
+      <nav className="lg container mx-auto flex w-full items-center justify-between px-8 py-4 max-sm:px-10">
         {/* For FinMorph Logo  */}
+        <div className="max-sm:pl-1" >
         <Link href="/">
           <Image
             height={40}
@@ -27,9 +28,11 @@ const Header = async () => {
             alt="Animated Icon"
             unoptimized
           />
-        </Link>
+          </Link>
+        </div>
+          
 
-        <div className="flex cursor-pointer items-center space-x-4">
+        <div className="flex cursor-pointer pr-1 items-center space-x-4">
           <SignedIn>
             <Link
               href={"/dashboard"}

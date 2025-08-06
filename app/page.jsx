@@ -11,12 +11,12 @@ export default function Home() {
     <div className="pt-40">
       <HeroSection />
 
-      <section className="rounded-full bg-purple-200 py-20">
+      <section className="rounded-full mt-8 bg-purple-200 py-20">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {statsData.map((data, index) => (
               <div key={index} className="text-center">
-                <div className="mb-2 bg-gradient-to-r from-[#711db5] via-[#7616a9] to-[#2e0a5a] bg-clip-text text-4xl font-bold text-transparent">
+                <div className="mb-2 max-sm:text-3xl bg-gradient-to-r from-[#711db5] via-[#7616a9] to-[#2e0a5a] bg-clip-text text-4xl font-bold text-transparent">
                   {data.value}
                 </div>
                 <div className="text-slate-800">{data.label}</div>
