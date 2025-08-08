@@ -28,7 +28,7 @@ export default function Home() {
 
       <FeaturesSection />
 
-      <section className="rounded-bl-full bg-purple-200 py-12 max-sm:w-full max-sm:border-2 max-sm:border-amber-400 max-sm:px-0">
+      <section className="rounded-bl-full bg-purple-200 py-12 max-sm:w-full max-sm:px-0">
         <div className="container mx-auto px-4">
           <h2 className="mb-6 text-center text-3xl font-bold text-black">
             How It Works
