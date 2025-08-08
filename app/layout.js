@@ -32,13 +32,13 @@ export default function RootLayout({ children }) {
             {/* header */}
             <Header />
 
-            <main className="min-h-screen select">{children}</main>
+            <main className="min-h-screen select max-sm:w-full max-sm:px-0">{children}</main>
             <Toaster richColors />
 
 
             {/* footer section*/}
             <footer className="roounded-tl-full rounded-tl-full rounded-tr-full border-4 border-b-0 border-purple-600 py-4">
-              <div className="container mx-auto px-4 text-center text-2xl text-purple-700">
+              <div className="max-sm:w-full max-sm:px-0 container mx-auto px-4 text-center text-2xl text-purple-700">
                 <p>Made by </p>
                 <div className="flex h-[4rem] items-center justify-center">
                   <TextHoverEffect text="GoofyGuy" />

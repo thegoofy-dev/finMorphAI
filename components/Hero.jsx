@@ -33,7 +33,7 @@ const HeroSection = () => {
   return (
     <div className="px-4 pb-20">
       <Meteors number={10} />
-      <div className="container mx-auto text-center">
+      <div className="mx-auto text-center">
         <div className="mb-4">
           <TextGenerateEffect
             words="Manage Your Finances"

@@ -8,15 +8,15 @@ import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="pt-40">
+    <div className="pt-40 max-sm:w-full max-sm:px-0">
       <HeroSection />
 
-      <section className="rounded-full mt-8 bg-purple-200 py-20">
+      <section className="mt-8 rounded-full bg-purple-200 py-20 max-sm:w-full max-sm:px-0">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {statsData.map((data, index) => (
               <div key={index} className="text-center">
-                <div className="mb-2 max-sm:text-3xl bg-gradient-to-r from-[#711db5] via-[#7616a9] to-[#2e0a5a] bg-clip-text text-4xl font-bold text-transparent">
+                <div className="mb-2 bg-gradient-to-r from-[#711db5] via-[#7616a9] to-[#2e0a5a] bg-clip-text text-4xl font-bold text-transparent max-sm:text-3xl">
                   {data.value}
                 </div>
                 <div className="text-slate-800">{data.label}</div>
@@ -28,7 +28,7 @@ export default function Home() {
 
       <FeaturesSection />
 
-      <section className="rounded-bl-full bg-purple-200 py-12">
+      <section className="rounded-bl-full bg-purple-200 py-12 max-sm:w-full max-sm:border-2 max-sm:border-amber-400 max-sm:px-0">
         <div className="container mx-auto px-4">
           <h2 className="mb-6 text-center text-3xl font-bold text-black">
             How It Works
@@ -50,8 +50,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="container mx-auto px-4">
+      <section className="py-16 max-sm:w-full max-sm:px-0">
+        <div className="container mx-auto px-4 max-sm:w-full max-sm:px-0">
           <h2 className="mb-12 text-center text-3xl font-bold">
             What Our Users Says
           </h2>
@@ -67,8 +67,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="rounded-tr-full bg-purple-200 py-12">
-        <div className="container mx-auto px-4 text-center">
+      <section className="rounded-tr-full bg-purple-200 py-12 max-sm:w-full">
+        <div className="container mx-auto px-4 text-center max-sm:w-full max-sm:px-0">
           <h2 className="mb-8 text-center text-3xl font-bold dark:text-black">
             Ready to Take Control of Your Finances?
           </h2>
