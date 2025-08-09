@@ -74,7 +74,7 @@ const HeroSection = () => {
               <button className="group cursor-pointer rounded-xl border bg-black px-4 py-2.5 text-purple-600 transition duration-200 hover:scale-105 dark:border-purple-600">
                 <div className="flex items-center justify-center gap-2">
                   <Sparkles className="inline rotate-45 cursor-pointer transition-transform duration-300 group-hover:scale-110 group-hover:rotate-0" />
-                  <span className="relative cursor-pointer leading-none group-hover:text-purple-600">
+                  <span className="relative cursor-pointer leading-none whitespace-nowrap group-hover:text-purple-600">
                     Create Transaction
                   </span>
                 </div>
