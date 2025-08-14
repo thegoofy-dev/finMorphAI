@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Meteors } from "./ui/meteors";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
 import { BackgroundGradient } from "./ui/background-gradient";
+import { VideoModal } from "./ui/video-modal";
 import { ArrowUpRightIcon } from "lucide-react";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { LayoutDashboard } from "lucide-react";
@@ -14,6 +15,7 @@ import { Sparkles } from "lucide-react";
 
 const HeroSection = () => {
   const imageRef = useRef();
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   useEffect(() => {
     const imageElement = imageRef.current;
@@ -98,14 +100,15 @@ const HeroSection = () => {
               </button>
             </Link>
 
-            <Link href="#" className="cursor-pointer">
-              <button className="cursor-pointer rounded-xl border bg-black px-4 py-2.5 text-purple-600 transition duration-200 hover:scale-105 dark:border-purple-600">
-                <div className="item-center flex cursor-pointer justify-center gap-2 text-nowrap">
-                  <PlayCircle className="inline-block cursor-pointer" />
-                  <span className="cursor-pointer">Watch Demo</span>
-                </div>
-              </button>
-            </Link>
+            <button
+              onClick={() => setIsVideoModalOpen(true)}
+              className="cursor-pointer rounded-xl border bg-black px-4 py-2.5 text-purple-600 transition duration-200 hover:scale-105 dark:border-purple-600"
+            >
+              <div className="item-center flex cursor-pointer justify-center gap-2 text-nowrap">
+                <PlayCircle className="inline-block cursor-pointer" />
+                <span className="cursor-pointer">Watch Promo</span>
+              </div>
+            </button>
           </SignedOut>
         </div>
 
@@ -125,6 +128,14 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+
+      {/* Video Modal */}
+      <VideoModal
+        isOpen={isVideoModalOpen}
+        onClose={() => setIsVideoModalOpen(false)}
+        videoSrc="/Promo_video.mp4"
+        title="FinMorph Promo Video"
+      />
     </div>
   );
 };
